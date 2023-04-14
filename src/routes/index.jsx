@@ -1,20 +1,26 @@
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import {Container, Content} from 'react-bulma-components'
 
 function AppRout(){
   return(
-  <Router>
+  <Container>
+  <Contact>
     <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-        {/* <NavLink to="/page2" activeClassname="active">Page 2</NavLink> */}
+        <Link to={{
+          pathname: '/contact',
+          serch: '?sort=name',
+          state: {fromHome: true}
+        }}>Contact</Link>
       </nav>
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/about"  element={<About />}/>
       <Route path="/contact" element={<Contact />}/>
     </Routes>
-  </Router>
+  </Contact>
+  </Container>
   )
 }
 
