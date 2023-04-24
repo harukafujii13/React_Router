@@ -1,10 +1,11 @@
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route, Link} from 'react-router-dom'
 import {Container, Content} from 'react-bulma-components'
+import Article from '../pages/Article'
 
 function AppRout(){
   return(
-  <Container>
-  <Contact>
+  <Container breakpoint={'fluid'}>
+  <Content>
     <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
@@ -13,13 +14,15 @@ function AppRout(){
           serch: '?sort=name',
           state: {fromHome: true}
         }}>Contact</Link>
+        <Link to="/post/1">Post Page</Link>
       </nav>
     <Routes>
+      <Route path="/post/:topicId" element={<Article />}/>
       <Route path="/" element={<Home />}/>
       <Route path="/about"  element={<About />}/>
       <Route path="/contact" element={<Contact />}/>
     </Routes>
-  </Contact>
+  </Content>
   </Container>
   )
 }
