@@ -1,10 +1,25 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getPost } from "../lib";
 
-import { useParams } from "react-router-dom"
+const Article = () => {
+  const [article, setArticle] = useState(null);
+  const { topicId } = useParams();
 
-const Article = () =>{
-  const {topicId}= useParams()
-  return(
-    <h1>Article Page: {topicId}</h1>
-  )
-}
-export default Article
+  useEffect(() => {
+    getPost(topicId).then(setArticle);
+  }, []);
+
+  return (
+    <>
+      <h1>Article Page</h1>
+      {article && (
+        <div>
+          <h1>{article.title}</h1>
+          <p>{article.body}</p>
+        </div>
+      )}
+    </>
+  );
+};
+export default Article;
